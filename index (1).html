@@ -1,0 +1,152 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geo Automations - Autonomous GEO for AI Search Excellence</title>
+    <meta name="description" content="Geo Automations: AI-powered Generative Engine Optimization for Indian SMEs. Automate content optimization, competitor analysis, and publishing for 40% visibility uplift.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- Google Fonts for royal theme -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">Geo Automations</div>
+            <nav class="nav">
+                <a href="#features">Features</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="help.html">Help</a>
+                <a href="#get-started" class="cta-button">Get Started</a>
+                <a href="#login" class="cta-button secondary">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Unlock AI Search Dominance with Autonomous GEO</h1>
+            <p>Geo Automations revolutionizes content optimization for generative AI engines, delivering 40% visibility uplift and 4.4x conversion growth for Indian SMEs.</p>
+            <a href="#get-started" class="cta-button">Start Your Free 7-Day Trial</a>
+        </div>
+    </section>
+
+    <section class="what-we-do" id="what-we-do">
+        <div class="container">
+            <h2>What We Do</h2>
+            <p>Geo Automations is an AI agency specializing in Generative Engine Optimization (GEO). We create autonomous AI agents that crawl, analyze, optimize, and publish content to excel in AI-driven search ecosystems. Our flagship agent automates the full GEO pipeline, from competitor research to performance tracking, with human-in-the-loop approvals for precision.</p>
+        </div>
+    </section>
+
+    <section class="how-different" id="how-different">
+        <div class="container">
+            <h2>How We're Different</h2>
+            <p>Unlike suggestion-only tools, we offer end-to-end automation: AI agents that execute changes, not just recommend them. India-centric optimizations (Hindi integration, JioMart schemas), multi-model AI selection, and a metrics dashboard make us the premium choice for SMEs seeking 4.4x ROI without technical overhead.</p>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <h2>Key Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Automated Competitor Analysis</h3>
+                    <p>Crawl and research top performers in AI search results for your keywords.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Intelligent Content Optimization</h3>
+                    <p>Rewrite with citations, long-tail queries, FAQs, and schema markup for GEO excellence.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Human-in-the-Loop Approval</h3>
+                    <p>Review and approve changes via email before publishing.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Multi-AI Model Support</h3>
+                    <p>Choose from 5 top models for optimized results across platforms.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Comprehensive Dashboard</h3>
+                    <p>Track visibility, citations, rankings, and ROI in real-time.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>One-Click Publishing</h3>
+                    <p>Direct integration with CMS for seamless deployment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="geo-education" id="geo-education">
+        <div class="container">
+            <h2>Understanding GEO: Advanced Insights</h2>
+            <p>Generative Engine Optimization (GEO) transcends traditional SEO by engineering content for AI generative models. It leverages prompt engineering, semantic structuring, and authority signals to ensure your content is preferentially selected in AI-generated responses. With 63% of web traffic now from AI search, GEO targets citation rates of 2-7 per response and 40% visibility uplift. Our agents implement advanced techniques like knowledge graph integration and multimodal schema to achieve 4.4x conversion multipliers, tailored for India’s $200B e-com market.</p>
+            <a href="help.html" class="cta-button secondary">Learn More in Help Center</a>
+        </div>
+    </section>
+
+    <section class="get-started" id="get-started">
+        <div class="container">
+            <h2>Get Started Today</h2>
+            <p>Sign up for your free 7-day trial and experience AI-driven GEO optimization.</p>
+            <form class="signup-form">
+                <input type="email" placeholder="Your email address" required>
+                <button type="submit" class="cta-button">Sign Up Free</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Geo Automations. All rights reserved.</p>
+            <nav>
+                <a href="pricing.html">Pricing</a>
+                <a href="help.html">Help</a>
+                <a href="#login">Login</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
