@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - GEO Automations</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">GEO Automations</div>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active" data-page="setup">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7v10c0 5.55 3.84 10 9 10s9-4.45 9-10V7l-10-5z"></path>
+                    </svg>
+                    Setup
+                </a>
+                <a href="#" class="nav-item" data-page="audit">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 11l3 3L22 4"></path>
+                    </svg>
+                    Audit Results
+                </a>
+                <a href="#" class="nav-item" data-page="optimization">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 20h9"></path>
+                        <path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                    </svg>
+                    Optimization
+                </a>
+                <a href="#" class="nav-item" data-page="workflow">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"></path>
+                    </svg>
+                    Workflow
+                </a>
+                <a href="#" class="nav-item" data-page="analytics">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                    </svg>
+                    Analytics
+                </a>
+                <a href="#" class="nav-item" data-page="publishing">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
+                    </svg>
+                    Publishing
+                </a>
+                <a href="#" class="nav-item" data-page="settings">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M12 1v6m0 6v6"></path>
+                    </svg>
+                    Settings
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar">U</div>
+                    <div class="user-details">
+                        <div class="user-name">Demo User</div>
+                        <div class="user-plan">Professional Trial</div>
+                    </div>
+                </div>
+                <a href="index.html" class="btn-secondary btn-full">Back to Home</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Trial Banner -->
+            <div class="trial-banner">
+                <div class="trial-info">
+                    <h4>Free Trial Active</h4>
+                    <p>7 days remaining - Upgrade to continue after trial</p>
+                </div>
+                <button class="btn-secondary" onclick="openUpgradeModal()">Upgrade Now</button>
+            </div>
+
+            <!-- Setup Page -->
+            <div id="setup-page" class="page-content active">
+                <div class="page-header">
+                    <h1>GEO Audit Setup</h1>
+                    <p class="page-description">Configure your website audit to analyze AI visibility and optimization opportunities</p>
+                </div>
+                
+                <div class="setup-form-container">
+                    <form class="setup-form" id="setup-form">
+                        <div class="form-section">
+                            <h3>Website Information</h3>
+                            <div class="form-group">
+                                <label for="website-url">Website URL</label>
+                                <input type="url" id="website-url" placeholder="https://yourwebsite.com" required>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>Target Keywords</h3>
+                            <div class="keyword-input-container">
+                                <label for="keywords">Keywords (press Enter to add)</label>
+                                <input type="text" id="keywords" placeholder="Add keyword and press Enter">
+                                <div class="keyword-tags" id="keyword-tags"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>Page-Specific URLs</h3>
+                            <div class="form-group">
+                                <label for="page-urls">Specific Pages to Optimize</label>
+                                <textarea id="page-urls" rows="4" placeholder="Enter URLs one per line (optional)"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>AI Platforms</h3>
+                            <div class="checkbox-group">
+                                <label class="checkbox-item">
+                                    <input type="checkbox" value="chatgpt" checked>
+                                    <span class="checkmark"></span>
+                                    ChatGPT
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" value="gemini" checked>
+                                    <span class="checkmark"></span>
+                                    Google Gemini
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" value="perplexity" checked>
+                                    <span class="checkmark"></span>
+                                    Perplexity
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" value="claude">
+                                    <span class="checkmark"></span>
+                                    Claude
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" value="copilot">
+                                    <span class="checkmark"></span>
+                                    Microsoft Copilot
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-primary btn-large">Start GEO Audit</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Audit Results Page -->
+            <div id="audit-page" class="page-content">
+                <div class="page-header">
+                    <h1>AI Audit Results</h1>
+                    <p class="page-description">AI presence analysis across platforms</p>
+                </div>
+                
+                <div class="audit-results">
+                    <div class="results-summary">
+                        <div class="summary-card">
+                            <h3>Visibility Score</h3>
+                            <div class="score">73%</div>
+                            <p>Above average performance</p>
+                        </div>
+                        <div class="summary-card">
+                            <h3>Citations This Month</h3>
+                            <div class="score">247</div>
+                            <p>Across 5 AI platforms</p>
+                        </div>
+                        <div class="summary-card">
+                            <h3>Ranking Improvement</h3>
+                            <div class="score">+23%</div>
+                            <p>Since last month</p>
+                        </div>
+                    </div>
+
+                    <div class="table-container">
+                        <table class="results-table" id="audit-table">
+                            <thead>
+                                <tr>
+                                    <th>Platform</th>
+                                    <th>Keyword</th>
+                                    <th>Current Ranking</th>
+                                    <th>Citations Found</th>
+                                    <th>Top Competitors</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Table content will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="gap-analysis">
+                        <div class="gap-item">
+                            <h4>Visibility Gaps</h4>
+                            <p>Your site is not appearing in AI responses for 67% of target keywords</p>
+                        </div>
+                        <div class="gap-item">
+                            <h4>Citation Opportunities</h4>
+                            <p>Average citation rate is 2.4 citations/month vs industry average of 4.8</p>
+                        </div>
+                        <div class="gap-item">
+                            <h4>Competitor Advantages</h4>
+                            <p>Top competitors are leveraging structured data and FAQ sections more effectively</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Optimization Page -->
+            <div id="optimization-page" class="page-content">
+                <div class="page-header">
+                    <h1>Content Optimization</h1>
+                    <p class="page-description">AI-driven content suggestions for better visibility</p>
+                </div>
+                
+                <div class="suggestions-container" id="suggestions-container">
+                    <!-- Content suggestions will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Workflow Page -->
+            <div id="workflow-page" class="page-content">
+                <div class="page-header">
+                    <h1>Approval Workflow</h1>
+                    <p class="page-description">Review and approve content changes</p>
+                </div>
+                
+                <div class="workflow-controls">
+                    <button class="btn-primary" id="bulk-approve">Bulk Approve</button>
+                    <button class="btn-secondary" id="bulk-reject">Bulk Reject</button>
+                </div>
+
+                <div class="workflow-tasks" id="workflow-tasks">
+                    <!-- Workflow tasks will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Analytics Page -->
+            <div id="analytics-page" class="page-content">
+                <div class="page-header">
+                    <h1>Analytics Dashboard</h1>
+                    <p class="page-description">Comprehensive metrics and performance tracking</p>
+                </div>
+                
+                <div class="analytics-grid">
+                    <div class="analytics-card">
+                        <h3>Visibility Score</h3>
+                        <div class="metric-value">73<span class="metric-unit">%</span></div>
+                        <div class="metric-trend">+15% from last month</div>
+                    </div>
+                    
+                    <div class="analytics-card">
+                        <h3>Total Citations</h3>
+                        <div class="metric-value">1,247<span class="metric-unit"></span></div>
+                        <div class="metric-trend">+89 this week</div>
+                    </div>
+                    
+                    <div class="analytics-card">
+                        <h3>Competitor Rank</h3>
+                        <div class="metric-value">3<span class="metric-unit">rd</span></div>
+                        <div class="metric-trend">Improved from 5th</div>
+                    </div>
+                    
+                    <div class="analytics-card">
+                        <h3>Content Optimized</h3>
+                        <div class="metric-value">24<span class="metric-unit"> pages</span></div>
+                        <div class="metric-trend">8 this month</div>
+                    </div>
+                </div>
+
+                <div class="charts-section">
+                    <div class="chart-container">
+                        <h4>Visibility Trends</h4>
+                        <canvas id="visibilityChart" width="400" height="200"></canvas>
+                    </div>
+                    
+                    <div class="competitor-benchmark">
+                        <h4>Competitor Benchmark</h4>
+                        <div class="competitor-table" id="competitor-table">
+                            <!-- Competitor data will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="export-buttons">
+                    <button class="btn-outline">Export PDF Report</button>
+                    <button class="btn-outline">Export CSV Data</button>
+                </div>
+            </div>
+
+            <!-- Publishing Page -->
+            <div id="publishing-page" class="page-content">
+                <div class="page-header">
+                    <h1>Publishing Status</h1>
+                    <p class="page-description">Track deployment of approved changes</p>
+                </div>
+                
+                <div class="publishing-status">
+                    <div class="publication-list" id="publication-list">
+                        <!-- Publishing status will be populated by JavaScript -->
+                    </div>
+                    
+                    <div class="publishing-summary">
+                        <div class="summary-item">
+                            <h4>Pending Publications</h4>
+                            <div class="summary-count">3</div>
+                        </div>
+                        <div class="summary-item">
+                            <h4>Published This Month</h4>
+                            <div class="summary-count">18</div>
+                        </div>
+                        <div class="summary-item">
+                            <h4>Success Rate</h4>
+                            <div class="summary-count">94%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Page -->
+            <div id="settings-page" class="page-content">
+                <div class="page-header">
+                    <h1>Settings</h1>
+                    <p class="page-description">Manage your account and preferences</p>
+                </div>
+                
+                <div class="settings-sections">
+                    <div class="settings-section">
+                        <h3>Account Information</h3>
+                        <div class="settings-form">
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" value="Demo User" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" value="demo@example.com" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Plan</label>
+                                <input type="text" value="Professional Trial" readonly>
+                            </div>
+                            <button class="btn-primary">Edit Profile</button>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Notification Preferences</h3>
+                        <div class="settings-toggles">
+                            <label class="toggle-item">
+                                <input type="checkbox" checked>
+                                <span class="toggle-switch"></span>
+                                Email notifications for audit completion
+                            </label>
+                            <label class="toggle-item">
+                                <input type="checkbox" checked>
+                                <span class="toggle-switch"></span>
+                                Weekly performance reports
+                            </label>
+                            <label class="toggle-item">
+                                <input type="checkbox">
+                                <span class="toggle-switch"></span>
+                                Marketing emails
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>API Keys</h3>
+                        <div class="api-keys">
+                            <div class="api-key-item">
+                                <label>WordPress API Key</label>
+                                <input type="password" placeholder="Enter your WordPress API key">
+                                <button class="btn-secondary">Save</button>
+                            </div>
+                            <div class="api-key-item">
+                                <label>Shopify API Key</label>
+                                <input type="password" placeholder="Enter your Shopify API key">
+                                <button class="btn-secondary">Save</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Billing & Subscription</h3>
+                        <div class="billing-info">
+                            <p><strong>Current Plan:</strong> Professional Trial</p>
+                            <p><strong>Trial Ends:</strong> 7 days remaining</p>
+                            <p><strong>Next Billing:</strong> N/A</p>
+                            <div class="billing-actions">
+                                <button class="btn-primary">Upgrade Plan</button>
+                                <button class="btn-outline">View Billing History</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay hidden">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h3>Running GEO audit...</h3>
+            <p>Analyzing your AI presence across platforms</p>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Audit Complete!</h3>
+                <span class="close" id="modal-close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Your GEO audit has been completed successfully. Click below to view your results.</p>
+                <button class="btn-primary" id="view-results">View Results</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

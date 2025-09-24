@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Center - GEO Automations</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="/logo.png" alt="GEO Automations" class="nav-logo">
+                <span class="brand-name">GEO Automations</span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html#features" class="nav-link">Features</a>
+                <a href="index.html#pricing" class="nav-link">Pricing</a>
+                <a href="#" class="nav-link active">Help</a>
+            </div>
+            <div class="nav-auth">
+                <button class="btn-secondary" onclick="openModal('login-modal')">Login</button>
+                <button class="btn-primary" onclick="openModal('signup-modal')">Get Started</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Help Hero Section -->
+    <section class="help-hero">
+        <div class="container">
+            <div class="help-hero-content">
+                <h1>How Can We Help You?</h1>
+                <p>Find answers, tutorials, and get support for GEO Automations</p>
+                
+                <!-- Search Box -->
+                <div class="help-search">
+                    <input type="text" id="help-search-input" placeholder="Search for help articles...">
+                    <button class="search-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="M21 21l-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <button class="quick-action" onclick="startLiveChat()">
+                        💬 Live Chat
+                    </button>
+                    <button class="quick-action" onclick="scheduleDemo()">
+                        📅 Schedule Demo
+                    </button>
+                    <button class="quick-action" onclick="contactSupport()">
+                        📧 Contact Support
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Help Categories -->
+    <section class="help-categories">
+        <div class="container">
+            <h2>Browse by Category</h2>
+            <div class="categories-grid">
+                <div class="category-card" onclick="showCategory('getting-started')">
+                    <div class="category-icon">🚀</div>
+                    <h3>Getting Started</h3>
+                    <p>Setup your first GEO audit and understand the basics</p>
+                    <span class="article-count">12 articles</span>
+                </div>
+
+                <div class="category-card" onclick="showCategory('geo-optimization')">
+                    <div class="category-icon">🎯</div>
+                    <h3>GEO Optimization</h3>
+                    <p>Advanced strategies for AI search optimization</p>
+                    <span class="article-count">18 articles</span>
+                </div>
+
+                <div class="category-card" onclick="showCategory('analytics')">
+                    <div class="category-icon">📊</div>
+                    <h3>Analytics & Reporting</h3>
+                    <p>Understanding your metrics and performance data</p>
+                    <span class="article-count">8 articles</span>
+                </div>
+
+                <div class="category-card" onclick="showCategory('integrations')">
+                    <div class="category-icon">🔗</div>
+                    <h3>Integrations</h3>
+                    <p>Connect with WordPress, Shopify, and other platforms</p>
+                    <span class="article-count">15 articles</span>
+                </div>
+
+                <div class="category-card" onclick="showCategory('billing')">
+                    <div class="category-icon">💳</div>
+                    <h3>Billing & Plans</h3>
+                    <p>Manage your subscription and billing preferences</p>
+                    <span class="article-count">6 articles</span>
+                </div>
+
+                <div class="category-card" onclick="showCategory('troubleshooting')">
+                    <div class="category-icon">🔧</div>
+                    <h3>Troubleshooting</h3>
+                    <p>Common issues and how to resolve them</p>
+                    <span class="article-count">10 articles</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Articles -->
+    <section class="popular-articles">
+        <div class="container">
+            <h2>Popular Articles</h2>
+            <div class="articles-list">
+                <article class="article-item">
+                    <div class="article-meta">
+                        <span class="category-tag getting-started">Getting Started</span>
+                        <span class="read-time">5 min read</span>
+                    </div>
+                    <h3><a href="#" onclick="openArticle('setup-first-audit')">How to Set Up Your First GEO Audit</a></h3>
+                    <p>Complete guide to configuring your website for AI search optimization analysis.</p>
+                    <div class="article-stats">
+                        <span>👍 98% helpful</span>
+                        <span>👁️ 1,247 views</span>
+                    </div>
+                </article>
+
+                <article class="article-item">
+                    <div class="article-meta">
+                        <span class="category-tag geo-optimization">GEO Optimization</span>
+                        <span class="read-time">8 min read</span>
+                    </div>
+                    <h3><a href="#" onclick="openArticle('understanding-citations')">Understanding AI Citations and Rankings</a></h3>
+                    <p>Learn how AI engines cite content and what factors influence your rankings.</p>
+                    <div class="article-stats">
+                        <span>👍 95% helpful</span>
+                        <span>👁️ 892 views</span>
+                    </div>
+                </article>
+
+                <article class="article-item">
+                    <div class="article-meta">
+                        <span class="category-tag integrations">Integrations</span>
+                        <span class="read-time">6 min read</span>
+                    </div>
+                    <h3><a href="#" onclick="openArticle('wordpress-integration')">Connecting Your WordPress Site</a></h3>
+                    <p>Step-by-step guide to integrate GEO Automations with your WordPress website.</p>
+                    <div class="article-stats">
+                        <span>👍 92% helpful</span>
+                        <span>👁️ 654 views</span>
+                    </div>
+                </article>
+
+                <article class="article-item">
+                    <div class="article-meta">
+                        <span class="category-tag analytics">Analytics</span>
+                        <span class="read-time">7 min read</span>
+                    </div>
+                    <h3><a href="#" onclick="openArticle('interpreting-metrics')">How to Interpret Your GEO Metrics</a></h3>
+                    <p>Understanding visibility scores, citation rates, and competitor benchmarks.</p>
+                    <div class="article-stats">
+                        <span>👍 89% helpful</span>
+                        <span>👁️ 423 views</span>
+                    </div>
+                </article>
+
+                <article class="article-item">
+                    <div class="article-meta">
+                        <span class="category-tag troubleshooting">Troubleshooting</span>
+                        <span class="read-time">4 min read</span>
+                    </div>
+                    <h3><a href="#" onclick="openArticle('common-issues')">Common Setup Issues and Solutions</a></h3>
+                    <p>Quick fixes for the most common problems users encounter during setup.</p>
+                    <div class="article-stats">
+                        <span>👍 87% helpful</span>
+                        <span>👁️ 312 views</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Support -->
+    <section class="contact-support">
+        <div class="container">
+            <div class="support-content">
+                <div class="support-info">
+                    <h2>Still Need Help?</h2>
+                    <p>Our support team is here to help you succeed with GEO Automations.</p>
+                    
+                    <div class="support-options">
+                        <div class="support-option">
+                            <div class="support-icon">💬</div>
+                            <div class="support-details">
+                                <h4>Live Chat</h4>
+                                <p>Get instant help from our support team</p>
+                                <button class="btn-primary" onclick="startLiveChat()">Start Chat</button>
+                            </div>
+                        </div>
+
+                        <div class="support-option">
+                            <div class="support-icon">📧</div>
+                            <div class="support-details">
+                                <h4>Email Support</h4>
+                                <p>Send us your questions via email</p>
+                                <button class="btn-outline" onclick="openEmailSupport()">Send Email</button>
+                            </div>
+                        </div>
+
+                        <div class="support-option">
+                            <div class="support-icon">📞</div>
+                            <div class="support-details">
+                                <h4>Schedule a Call</h4>
+                                <p>Talk to our experts one-on-one</p>
+                                <button class="btn-outline" onclick="scheduleCall()">Schedule Call</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="response-times">
+                        <h4>Response Times</h4>
+                        <ul>
+                            <li><strong>Live Chat:</strong> Average 2 minutes</li>
+                            <li><strong>Email:</strong> Within 4 hours</li>
+                            <li><strong>Phone:</strong> Same day callback</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="contact-form-container">
+                    <form class="contact-form">
+                        <h3>Send us a Message</h3>
+                        
+                        <div class="form-group">
+                            <label for="contact-name">Name</label>
+                            <input type="text" id="contact-name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-email">Email</label>
+                            <input type="email" id="contact-email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-subject">Subject</label>
+                            <select id="contact-subject" required>
+                                <option value="">Select a topic</option>
+                                <option value="setup">Setup Help</option>
+                                <option value="billing">Billing Question</option>
+                                <option value="technical">Technical Issue</option>
+                                <option value="feature">Feature Request</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-message">Message</label>
+                            <textarea id="contact-message" rows="6" required placeholder="Describe your question or issue..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-primary btn-full">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <img src="/logo.png" alt="GEO Automations" class="footer-logo">
+                        <span class="brand-name">GEO Automations</span>
+                    </div>
+                    <p class="footer-description">The world's leading Generative Engine Optimization platform.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="help.html">Help Center</a></li>
+                        <li><a href="#" onclick="startLiveChat()">Live Chat</a></li>
+                        <li><a href="#" onclick="contactSupport()">Contact Support</a></li>
+                        <li><a href="/status">System Status</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="/blog">Blog</a></li>
+                        <li><a href="/guides">GEO Guides</a></li>
+                        <li><a href="/webinars">Webinars</a></li>
+                        <li><a href="/api-docs">API Documentation</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#pricing">Pricing</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 GEO Automations. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Live Chat Widget -->
+    <div id="chat-widget" class="chat-widget">
+        <button class="chat-toggle" onclick="toggleChat()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+            </svg>
+        </button>
+        <div class="chat-window" id="chat-window" style="display: none;">
+            <div class="chat-header">
+                <h4>GEO Support</h4>
+                <button onclick="toggleChat()">&times;</button>
+            </div>
+            <div class="chat-messages">
+                <div class="message bot-message">
+                    <p>Hi! I'm here to help you with GEO Automations. What can I assist you with today?</p>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" placeholder="Type your message..." id="chat-input">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+    <script src="help.js"></script>
+</body>
+</html>
